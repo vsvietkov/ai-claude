@@ -1,0 +1,14 @@
+{
+  "name": "personal-toolkit",
+  "version": "0.1.0",
+  "description": "Core reusable toolkit: shared rules, skills, slash commands, subagents, hooks, and helper scripts.",
+  "author": {
+    "name": "Vitalii Svietkov",
+    "email": "vsvietkov@gmail.com",
+    "url": "https://github.com/vsvietkov"
+  },
+  "homepage": "https://github.com/vsvietkov/ai-claude",
+  "repository": "https://github.com/vsvietkov/ai-claude",
+  "license": "MIT",
+  "keywords": ["productivity", "workflow", "rules", "skills"]
+}
