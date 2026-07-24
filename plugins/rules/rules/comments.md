@@ -93,10 +93,14 @@ the code.
 ## Audit before reporting done
 
 Comments drift over a long task — default habits creep back toward over-explaining
-and "what" comments. Before you report an implementation done (including small
-follow-up fixes), re-read this rule and review the comments you added or changed in
-the diff. Keep comments light while the code is still churning, then make this pass
-the enforcement point.
+and "what" comments. So a cleanup pass is the gate for "done":
+
+**Every time you are about to report an implementation complete — including any
+small follow-up fix — review each comment you added or changed in the diff against
+the rules above, and cut or tighten every one that violates them.**
+
+It is fine to leave comments rough while the code is still churning; this pass is
+where they get fixed.
 
 ---
 
