@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# Claude Code status line: model name, git branch, and context-usage bar.
+# Designed to never fail the caller — any missing dependency or bad input
+# results in a partial line (or nothing) and a clean exit 0.
+
+# jq is required to parse the JSON payload on stdin. Without it there is
+# nothing useful to print, so exit quietly.
+command -v jq >/dev/null 2>&1 || exit 0
+
+input=$(cat)
+
+model=$(printf '%s' "$input" | jq -r '.model.display_name // "Unknown"')
+used=$(printf '%s' "$input" | jq -r '.context_window.used_percentage // empty')
+cwd=$(printf '%s' "$input" | jq -r '.cwd // empty')
+
+# Resolve git branch from the session's cwd, if git is available.
+branch=""
+if [ -n "$cwd" ] && command -v git >/dev/null 2>&1; then
+  branch=$(git -C "$cwd" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null)
+fi
+
+branch_str=""
+if [ -n "$branch" ]; then
+  branch_str="  \033[36m($branch)\033[0m"
+fi
+
+# Render the usage bar only when we have a numeric percentage.
+if printf '%s' "$used" | grep -Eq '^[0-9]+(\.[0-9]+)?$'; then
+  # Integer math only — avoids depending on bc/seq.
+  pct=${used%.*}
+  filled=$(( pct / 10 ))
+  [ "$filled" -gt 10 ] && filled=10
+  [ "$filled" -lt 0 ] && filled=0
+  empty=$(( 10 - filled ))
+
+  bar=""
+  i=0
+  while [ "$i" -lt "$filled" ]; do bar="${bar}#"; i=$(( i + 1 )); done
+  i=0
+  while [ "$i" -lt "$empty" ];  do bar="${bar}-"; i=$(( i + 1 )); done
+
+  if   [ "$filled" -ge 8 ]; then color="\033[31m"   # red
+  elif [ "$filled" -ge 5 ]; then color="\033[33m"   # yellow
+  else                            color="\033[32m"   # green
+  fi
+  reset="\033[0m"
+
+  printf "%s${branch_str}  ${color}[%s]${reset} %s%%" "$model" "$bar" "$pct"
+else
+  printf "%s${branch_str}" "$model"
+fi
+
+exit 0

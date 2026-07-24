@@ -27,3 +27,4 @@ yarn-error.log*
 secrets/
 
 CLAUDE.local.md
+.claude/
