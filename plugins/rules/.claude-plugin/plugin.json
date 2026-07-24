@@ -1,0 +1,14 @@
+{
+  "name": "rules",
+  "version": "0.1.0",
+  "description": "Reusable, language-neutral convention rules (Makefile, .env, comments) plus an /install-rules command to drop them into any project's .claude/rules/.",
+  "author": {
+    "name": "Vitalii Svietkov",
+    "email": "vsvietkov@gmail.com",
+    "url": "https://github.com/vsvietkov"
+  },
+  "homepage": "https://github.com/vsvietkov/ai-claude/tree/main/plugins/rules",
+  "repository": "https://github.com/vsvietkov/ai-claude",
+  "license": "MIT",
+  "keywords": ["rules", "conventions", "makefile", "env", "comments"]
+}

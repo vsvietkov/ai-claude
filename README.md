@@ -12,7 +12,7 @@ that publishes one or more plugins.
 
 | Plugin | Description |
 | ------ | ----------- |
-| [`personal-toolkit`](plugins/personal-toolkit) | Core reusable toolkit: shared rules, skills, slash commands, subagents, hooks, and helper scripts. |
+| [`rules`](plugins/rules) | Language-neutral convention rules (Makefile, `.env`, comments) plus `/install-rules` to drop them into any project's `.claude/rules/`. |
 
 Each plugin can contribute any of the following components:
 
@@ -32,7 +32,7 @@ Add this marketplace, then install the plugin(s):
 ```
 # In Claude Code
 /plugin marketplace add vsvietkov/ai-claude
-/plugin install personal-toolkit@vsvietkov-toolkit
+/plugin install rules@vsvietkov-toolkit
 ```
 
 Or add it from a local clone during development:
@@ -51,8 +51,8 @@ Then use `/plugin` to browse, enable, or disable installed plugins.
 4. Run `/plugin marketplace update vsvietkov-toolkit` to pick up changes, and
    reload the plugin to test.
 
-New to the layout? Copy the `example.*` templates in `personal-toolkit` as a
-starting point. See [CLAUDE.md](CLAUDE.md) for conventions and validation.
+New to the layout? The [`rules`](plugins/rules) plugin is a worked example of the
+structure. See [CLAUDE.md](CLAUDE.md) for component conventions and validation.
 
 ## Repository layout
 
@@ -61,14 +61,11 @@ starting point. See [CLAUDE.md](CLAUDE.md) for conventions and validation.
 ├── .claude-plugin/
 │   └── marketplace.json          # Marketplace manifest (lists all plugins)
 ├── plugins/
-│   └── personal-toolkit/
+│   └── rules/
 │       ├── .claude-plugin/
 │       │   └── plugin.json        # Plugin manifest
-│       ├── commands/              # Slash commands
-│       ├── agents/                # Subagents
-│       ├── skills/                # Agent skills
-│       ├── hooks/                 # hooks.json
-│       ├── scripts/               # Helper scripts
+│       ├── commands/              # /install-rules
+│       ├── rules/                 # Convention rule files (payload)
 │       └── README.md
 ├── CLAUDE.md                       # Conventions for working in this repo
 ├── LICENSE                         # MIT

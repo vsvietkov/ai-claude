@@ -7,20 +7,20 @@
   },
   "metadata": {
     "description": "Vitalii's personal collection of reusable Claude Code plugins — rules, skills, commands, agents, hooks, and scripts battle-tested at work and reused across projects.",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
-      "name": "personal-toolkit",
-      "source": "./plugins/personal-toolkit",
-      "description": "Core reusable toolkit: shared rules, skills, slash commands, subagents, hooks, and helper scripts.",
+      "name": "rules",
+      "source": "./plugins/rules",
+      "description": "Reusable, language-neutral convention rules (Makefile, .env, comments) plus an /install-rules command to drop them into any project's .claude/rules/.",
       "version": "0.1.0",
       "author": {
         "name": "Vitalii Svietkov",
         "email": "vsvietkov@gmail.com"
       },
       "license": "MIT",
-      "keywords": ["productivity", "workflow", "rules", "skills"]
+      "keywords": ["rules", "conventions", "makefile", "env", "comments"]
     }
   ]
 }
