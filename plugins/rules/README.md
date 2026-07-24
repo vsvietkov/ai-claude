@@ -2,7 +2,7 @@
 
 Reusable, **language-neutral, project-neutral** convention rules extracted from
 real projects and adapted for reuse. Each rule is a scoped `.claude/rules/*.md`
-file; the `/install-rules` command drops the ones you want into any project.
+file; the `/rules:install` command drops the ones you want into any project.
 
 ## Rules
 
@@ -15,14 +15,41 @@ file; the `/install-rules` command drops the ones you want into any project.
 Each rule is **independent and self-contained** — install only the ones a project
 needs.
 
-## Usage
+## Installing
 
-Install the plugin, then from inside a target project run:
+Unlike skills, rules aren't a native plugin component — they live in a project's
+`.claude/rules/`. So installing is **two steps**: install the plugin once (it
+gives you the `/rules:install` command), then run that command inside each
+project to copy the rule files in.
+
+From the published marketplace (once this repo is on GitHub):
 
 ```
-/install-rules              # install all
-/install-rules makefile     # install just one
-/install-rules comments env-files
+/plugin marketplace add vsvietkov/ai-claude
+/plugin install rules@vsvietkov-toolkit
+```
+
+From a local clone (during development, before pushing):
+
+```
+/plugin marketplace add /absolute/path/to/ai-claude
+/plugin install rules@vsvietkov-toolkit
+```
+
+The plugin installs at the **user level**, so `/rules:install` is available in
+all your projects; enable or disable it per project with `/plugin`. After
+editing a rule in a local clone, run `/plugin marketplace update
+vsvietkov-toolkit` to pick up the change.
+
+## Usage
+
+From inside a target project, run the command to copy rule files into that
+project's `.claude/rules/`:
+
+```
+/rules:install              # install all
+/rules:install makefile     # install just one
+/rules:install comments env-files
 ```
 
 The command copies the selected rule files into the project's `.claude/rules/`

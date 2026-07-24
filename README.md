@@ -12,7 +12,8 @@ that publishes one or more plugins.
 
 | Plugin | Description |
 | ------ | ----------- |
-| [`rules`](plugins/rules) | Language-neutral convention rules (Makefile, `.env`, comments) plus `/install-rules` to drop them into any project's `.claude/rules/`. |
+| [`rules`](plugins/rules) | Language-neutral convention rules (Makefile, `.env`, comments) plus `/rules:install` to drop them into any project's `.claude/rules/`. |
+| [`skills`](plugins/skills) | Language- and project-neutral skills. Currently `writing-knowledge-docs` — code-grounded, durable explanations of how a subsystem works. |
 
 Each plugin can contribute any of the following components:
 
@@ -61,11 +62,16 @@ structure. See [CLAUDE.md](CLAUDE.md) for component conventions and validation.
 ├── .claude-plugin/
 │   └── marketplace.json          # Marketplace manifest (lists all plugins)
 ├── plugins/
-│   └── rules/
+│   ├── rules/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json        # Plugin manifest
+│   │   ├── commands/              # /rules:install
+│   │   ├── rules/                 # Convention rule files (payload)
+│   │   └── README.md
+│   └── skills/
 │       ├── .claude-plugin/
 │       │   └── plugin.json        # Plugin manifest
-│       ├── commands/              # /install-rules
-│       ├── rules/                 # Convention rule files (payload)
+│       ├── skills/                # <name>/SKILL.md (payload)
 │       └── README.md
 ├── CLAUDE.md                       # Conventions for working in this repo
 ├── LICENSE                         # MIT

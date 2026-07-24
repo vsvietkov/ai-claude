@@ -7,13 +7,13 @@
   },
   "metadata": {
     "description": "Vitalii's personal collection of reusable Claude Code plugins — rules, skills, commands, agents, hooks, and scripts battle-tested at work and reused across projects.",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "rules",
       "source": "./plugins/rules",
-      "description": "Reusable, language-neutral convention rules (Makefile, .env, comments) plus an /install-rules command to drop them into any project's .claude/rules/.",
+      "description": "Reusable, language-neutral convention rules (Makefile, .env, comments) plus a /rules:install command to drop them into any project's .claude/rules/.",
       "version": "0.1.0",
       "author": {
         "name": "Vitalii Svietkov",
@@ -21,6 +21,18 @@
       },
       "license": "MIT",
       "keywords": ["rules", "conventions", "makefile", "env", "comments"]
+    },
+    {
+      "name": "skills",
+      "source": "./plugins/skills",
+      "description": "Reusable, language- and project-neutral skills. Currently: writing-knowledge-docs — durable, code-grounded explanations of how a subsystem works.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Vitalii Svietkov",
+        "email": "vsvietkov@gmail.com"
+      },
+      "license": "MIT",
+      "keywords": ["skills", "documentation", "knowledge-base", "docs", "writing"]
     }
   ]
 }
