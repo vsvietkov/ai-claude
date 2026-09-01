@@ -11,7 +11,7 @@ file; the `/rules:install` command drops the ones you want into any project.
 | `makefile.md` | `**/Makefile`, `**/*.mk` | `.PHONY`, self-documenting `## ` target comments, the `make help` target, Unicode section dividers, `$(if …)` optional-var guards, shared `RUN`/`EXEC`/`IMAGE` vars. |
 | `env-files.md` | `**/.env.example` | Commit `*.example` / gitignore real env, document every variable, live-vs-commented rule, dev/test sibling invariant. |
 | `comments.md` | `**/*` | Doc comment = one-line "what it is"; inline = one-line "why"; runtime "what" → logs; keep the *why* local and short; end-of-task audit gate. |
-| `writing-rules.md` | `.claude/rules/**/*.md`, `CLAUDE.md` | How to write a rule: the staleness test, constraints not descriptions, no lists that must be complete, verify every symbol named, one exemplar never an inventory, `paths:` scoping and the per-load attention budget, and what belongs in `CLAUDE.md` above the rules. |
+| `writing-rules.md` | `.claude/rules/**/*.md`, `CLAUDE.md` | How to write a rule: the staleness test, constraints not descriptions, no lists that must be complete, verify every symbol named, one exemplar never an inventory, `paths:` scoping and the per-load attention budget, what belongs in `CLAUDE.md` above the rules, plus an ordered procedure and a skeleton for writing one from cold. |
 
 Each rule is **independent and self-contained** — install only the ones a project
 needs.

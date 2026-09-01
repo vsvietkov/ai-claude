@@ -15,6 +15,10 @@ governs, and anything generated from these files (a review bot's config, contrib
 inherits the error. Everything else has a different home — how a subsystem works is a knowledge
 doc, what was chosen and what it cost is a decision record, why this line exists is a comment.
 
+Writing one from cold is §12, which orders the constraints below into a sequence and shows the
+shape they produce. This rule is one audience — whoever is writing a rule — and all constraints,
+so its length is correct and stays (§10).
+
 ---
 
 ## 1. The staleness test
@@ -184,6 +188,64 @@ to find where something is written down. Every constraint in this file applies t
   change must not quietly undo, the checklists of several places that must move together (§8),
   and the session-behaviour and definition-of-done gates. Each of those has no other home.
 
+## 12. Writing one: the order of work
+
+The constraints above are acceptance criteria — they say what a finished rule must be true of,
+not how to arrive at one. **Work in this order, because each step's output is the next one's
+input**: you cannot scope `paths:` before you know the audience, and you cannot diagnose length
+(§10) while narration is still in the draft inflating it.
+
+1. **Decide it is a rule at all** — apply the staleness test (§1) to the thing you are about to
+   write down. A mechanism is a knowledge doc, a position is a decision record, local intent is
+   a comment, and what the code already says is nothing.
+2. **Name the audience, then scope `paths:` to it** (§9). One audience per rule; if you cannot
+   name it in a phrase, you have two rules. Measure what already loads on those files before
+   widening a glob.
+3. **Draft the boundary paragraph first** (§2) — what this file holds, where the mechanism
+   lives instead, and the reference implementation if the rule has one (§6). Writing it first
+   is what keeps narration out of the sections; writing it last turns it into a summary.
+4. **Write each constraint as an imperative with its reason** — *"X, because Y"* (§2) —
+   preferring the general shape to the instance you have in hand. Where a constraint has a real
+   exception, write the question that decides it (§3); where it has none, say nothing.
+5. **Verify every symbol you named** (§5). Open or grep each one, and delete what you cannot
+   confirm — an unverified name reads exactly like a verified one, so nothing later catches it.
+6. **Cut what rots** — inventories and lists that must be complete to be correct (§4, §6), and
+   every tense marker (§7).
+7. **Wire the cross-references** (§8) — number the `##` headings, point at sections rather than
+   files, and delete anything you restated from a rule that already owns it.
+8. **Diagnose the length last** (§10), once the narration is gone: mechanism moves to a
+   knowledge doc, two audiences split into two rules, and anything else is the right length.
+
+The shape those steps produce:
+
+```markdown
+---
+paths:
+  - "<narrowest glob catching every edit this rule constrains>"
+---
+
+# <Subject> Rule
+
+<One paragraph: what this file holds, where the mechanism lives instead, and — if the
+rule has one — the reference implementation, named here: "`widgetstore` is the reference
+store". If the rule is long because it is all constraint for one audience, say so here.>
+
+---
+
+## 1. <The constraint, as an imperative>
+
+**<Do this>**, because <reason>. <Where a real exception exists, the question that decides
+it — not the cases that have come up.>
+
+## 2. <Next constraint>
+
+...
+
+## Red-flag phrasing that signals a violation
+
+- "<a rationalization the prose above never voices>" — no: <what it costs>.
+```
+
 ## Red-flag phrasing that signals a violation
 
 - "A tree here would help the reader see the layout" — no: that is an inventory that goes stale
@@ -205,3 +267,7 @@ to find where something is written down. Every constraint in this file applies t
   symbol reads exactly like a verified one.
 - "I'll explain this properly in `CLAUDE.md` so a reader gets it without opening the rule" —
   no: that is the copy that goes stale. Name the rule and stop.
+- "I know what a good rule looks like, I'll just write it and tidy after" — the tidy pass is
+  where a symbol goes unverified (§5) and narration survives as a section; run §12 in order.
+- "I'll write the boundary paragraph once the sections are done" — no: it is the step that
+  keeps mechanism out of them (§12), so writing it last leaves nothing for it to do.
