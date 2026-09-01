@@ -12,7 +12,7 @@ that publishes one or more plugins.
 
 | Plugin | Description |
 | ------ | ----------- |
-| [`rules`](plugins/rules) | Language-neutral convention rules (Makefile, `.env`, comments) plus `/rules:install` to drop them into any project's `.claude/rules/`. |
+| [`rules`](plugins/rules) | Language-neutral convention rules (Makefile, `.env`, comments, writing-rules) plus `/rules:install` to drop them into any project's `.claude/rules/`. |
 | [`skills`](plugins/skills) | Language- and project-neutral skills. Currently `writing-knowledge-docs` — code-grounded, durable explanations of how a subsystem works. |
 | [`statusline`](plugins/statusline) | A dependency-light status line (model name, git branch, context-usage bar) plus `/statusline:install` to wire it into any project's `.claude/`. |
 
