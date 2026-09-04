@@ -1,7 +1,7 @@
 {
   "name": "skills",
-  "version": "0.1.0",
-  "description": "Reusable, language- and project-neutral skills. Currently: writing-knowledge-docs — durable, code-grounded explanations of how a subsystem works.",
+  "version": "0.2.0",
+  "description": "Reusable, language- and project-neutral skills. Currently: writing-knowledge-docs — durable, code-grounded explanations of how a subsystem works, plus dated decision records.",
   "author": {
     "name": "Vitalii Svietkov",
     "email": "vsvietkov@gmail.com",
@@ -10,5 +10,5 @@
   "homepage": "https://github.com/vsvietkov/ai-claude/tree/main/plugins/skills",
   "repository": "https://github.com/vsvietkov/ai-claude",
   "license": "MIT",
-  "keywords": ["skills", "documentation", "knowledge-base", "docs", "writing"]
+  "keywords": ["skills", "documentation", "knowledge-base", "knowledge-docs", "docs", "decision-records", "adr", "writing"]
 }

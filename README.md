@@ -13,7 +13,7 @@ that publishes one or more plugins.
 | Plugin | Description |
 | ------ | ----------- |
 | [`rules`](plugins/rules) | Language-neutral convention rules (Makefile, env templates, comments, writing-rules) plus `/rules:install` to drop them into any project's `.claude/rules/`. |
-| [`skills`](plugins/skills) | Language- and project-neutral skills. Currently `writing-knowledge-docs` — code-grounded, durable explanations of how a subsystem works. |
+| [`skills`](plugins/skills) | Language- and project-neutral skills. Currently `writing-knowledge-docs` — code-grounded, durable explanations of how a subsystem works, plus dated decision records. |
 | [`statusline`](plugins/statusline) | A dependency-light status line (model name, git branch, context-usage bar) plus `/statusline:install` to wire it into any project's `.claude/`. |
 
 Each plugin can contribute any of the following components:
@@ -72,7 +72,7 @@ structure. See [CLAUDE.md](CLAUDE.md) for component conventions and validation.
 │   ├── skills/
 │   │   ├── .claude-plugin/
 │   │   │   └── plugin.json        # Plugin manifest
-│   │   ├── skills/                # <name>/SKILL.md (payload)
+│   │   ├── skills/                # <name>/SKILL.md + references/ (payload)
 │   │   └── README.md
 │   └── statusline/
 │       ├── .claude-plugin/

@@ -1,15 +1,15 @@
 # skills
 
 Reusable, **language-neutral, project-neutral** skills extracted from real
-projects and adapted for reuse. Each skill lives in
-`skills/<name>/SKILL.md` and loads on demand when its `description` matches the
-task at hand.
+projects and adapted for reuse. Each skill lives in `skills/<name>/SKILL.md` and
+loads on demand when its `description` matches the task at hand; a skill may
+bundle supporting files beside it, which it reads only when they apply.
 
 ## Skills
 
 | Skill | Loads when | Does |
 | ----- | ---------- | ---- |
-| `writing-knowledge-docs` | You're creating or updating a knowledge-base doc that explains how a subsystem or feature works. | Enforces frontmatter, the technical/non-technical two-block split, portable markdown, grounding every claim in code you've actually read, and keeping the docs index and README/CLAUDE pointers in sync. |
+| `writing-knowledge-docs` | You're creating or updating a knowledge doc under `docs/knowledge/`, or writing a decision record under `docs/decisions/`. | Enforces the durability tests, pointing at files instead of transcribing them, the plain-language opener, the length budget, grounding every claim in code you've actually read, and keeping the index and the register in sync. Bundles `references/decision-records.md`, which it loads on demand for records. |
 
 ## Installing
 
@@ -39,8 +39,13 @@ the change.
 ## Usage
 
 The skill loads automatically when a task matches its `description` — no slash
-command needed. Just start writing or updating a knowledge doc and Claude picks
-it up.
+command needed. Just start writing or updating a knowledge doc, or ask for a
+decision record, and Claude picks it up.
 
-The skill is a starting point — its default doc location (`docs/knowledge/`) and
-frontmatter are conventions you can adapt to a project's existing docs home.
+`writing-knowledge-docs` prescribes the layout it enforces rather than adapting
+to an existing one: knowledge docs at `docs/knowledge/<scope>/<topic>.md` indexed
+by `docs/knowledge/README.md`, decision records at
+`docs/decisions/YYYYMMDDHHMMSS-kebab-title.md` registered in
+`docs/decisions/README.md`. Test conventions and other rules it routes away from
+a doc land in `.claude/rules/`, which is where the sibling
+[`rules`](../rules) plugin installs.

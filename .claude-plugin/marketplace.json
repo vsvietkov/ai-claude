@@ -25,14 +25,14 @@
     {
       "name": "skills",
       "source": "./plugins/skills",
-      "description": "Reusable, language- and project-neutral skills. Currently: writing-knowledge-docs — durable, code-grounded explanations of how a subsystem works.",
-      "version": "0.1.0",
+      "description": "Reusable, language- and project-neutral skills. Currently: writing-knowledge-docs — durable, code-grounded explanations of how a subsystem works, plus dated decision records.",
+      "version": "0.2.0",
       "author": {
         "name": "Vitalii Svietkov",
         "email": "vsvietkov@gmail.com"
       },
       "license": "MIT",
-      "keywords": ["skills", "documentation", "knowledge-base", "docs", "writing"]
+      "keywords": ["skills", "documentation", "knowledge-base", "knowledge-docs", "docs", "decision-records", "adr", "writing"]
     },
     {
       "name": "statusline",
