@@ -19,9 +19,18 @@ if [ -n "$cwd" ] && command -v git >/dev/null 2>&1; then
   branch=$(git -C "$cwd" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null)
 fi
 
-branch_str=""
+# Colours hold real escape bytes, not printf format fragments: a branch name may
+# legally contain `%`, so every value stays an argument, never part of a format.
+cyan=$'\033[36m'
+red=$'\033[31m'
+yellow=$'\033[33m'
+green=$'\033[32m'
+reset=$'\033[0m'
+
+printf '%s' "$model"
+
 if [ -n "$branch" ]; then
-  branch_str="  \033[36m($branch)\033[0m"
+  printf '  %s(%s)%s' "$cyan" "$branch" "$reset"
 fi
 
 # Render the usage bar only when we have a numeric percentage.
@@ -39,15 +48,12 @@ if printf '%s' "$used" | grep -Eq '^[0-9]+(\.[0-9]+)?$'; then
   i=0
   while [ "$i" -lt "$empty" ];  do bar="${bar}-"; i=$(( i + 1 )); done
 
-  if   [ "$filled" -ge 8 ]; then color="\033[31m"   # red
-  elif [ "$filled" -ge 5 ]; then color="\033[33m"   # yellow
-  else                            color="\033[32m"   # green
+  if   [ "$filled" -ge 8 ]; then color="$red"
+  elif [ "$filled" -ge 5 ]; then color="$yellow"
+  else                            color="$green"
   fi
-  reset="\033[0m"
 
-  printf "%s${branch_str}  ${color}[%s]${reset} %s%%" "$model" "$bar" "$pct"
-else
-  printf "%s${branch_str}" "$model"
+  printf '  %s[%s]%s %s%%' "$color" "$bar" "$reset" "$pct"
 fi
 
 exit 0

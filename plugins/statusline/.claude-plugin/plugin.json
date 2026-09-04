@@ -1,6 +1,6 @@
 {
   "name": "statusline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A dependency-light Claude Code status line (model name, git branch, context-usage bar) plus a /statusline:install command to wire it into any project's .claude/.",
   "author": {
     "name": "Vitalii Svietkov",
