@@ -1,6 +1,6 @@
 ---
-description: Copy the reusable convention rule files (Makefile, .env, comments, writing-rules) into this project's .claude/rules/ so they auto-load on matching files.
-argument-hint: [makefile|env-files|comments|writing-rules|all]
+description: Copy the reusable convention rule files (Makefile, env templates, comments, writing-rules) into this project's .claude/rules/ so they auto-load on matching files.
+argument-hint: [makefile|env-templates|comments|writing-rules|all]
 ---
 
 # Install convention rules
@@ -15,8 +15,8 @@ The rule files ship under `${CLAUDE_PLUGIN_ROOT}/rules/`:
 | Name | File | Governs (`paths:`) |
 | ---- | ---- | ------------------ |
 | `makefile` | `makefile.md` | `**/Makefile`, `**/*.mk` |
-| `env-files` | `env-files.md` | `**/.env.example`, `**/*.env.example` |
-| `comments` | `comments.md` | `**/*` |
+| `env-templates` | `env-templates.md` | `**/.env.example`, `**/*.env.example` |
+| `comments` | `comments.md` | source extensions (`**/*.go`, `**/*.ts`, `**/*.py`, …) |
 | `writing-rules` | `writing-rules.md` | `.claude/rules/**/*.md`, `CLAUDE.md` |
 
 ## Task

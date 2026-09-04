@@ -8,10 +8,10 @@ file; the `/rules:install` command drops the ones you want into any project.
 
 | Rule | Scope (`paths:`) | Governs |
 | ---- | ---------------- | ------- |
-| `makefile.md` | `**/Makefile`, `**/*.mk` | `.PHONY`, self-documenting `## ` target comments, the `make help` target, Unicode section dividers, `$(if …)` optional-var guards, shared `RUN`/`EXEC`/`IMAGE` vars. |
-| `env-files.md` | `**/.env.example` | Commit `*.example` / gitignore real env, document every variable, live-vs-commented rule, dev/test sibling invariant. |
-| `comments.md` | `**/*` | Doc comment = one-line "what it is"; inline = one-line "why"; runtime "what" → logs; keep the *why* local and short; end-of-task audit gate. |
-| `writing-rules.md` | `.claude/rules/**/*.md`, `CLAUDE.md` | How to write a rule: the staleness test, constraints not descriptions, no lists that must be complete, verify every symbol named, one exemplar never an inventory, `paths:` scoping and the per-load attention budget, what belongs in `CLAUDE.md` above the rules, plus an ordered procedure and a skeleton for writing one from cold. |
+| `makefile.md` | `**/Makefile`, `**/*.mk` | `.PHONY`, self-documenting `## ` target comments, a `help` default goal, Unicode section dividers, `$(if …)` optional-var guards, a single shared exec/container variable. |
+| `env-templates.md` | `**/.env.example`, `**/*.env.example` | The committed `*.example` templates as the documentation of every setting: an ordered adding-a-var procedure, one-line section banners naming the consuming code, a two-line comment budget with the test for what belongs elsewhere, the live-vs-commented rule, the primary/test sibling invariant, and the carve-out for vars only an orchestrator interpolates. |
+| `comments.md` | source extensions (`**/*.go`, `**/*.ts`, `**/*.py`, … — a hand-maintained closed set) | Doc comment = one-line "what it is" (and none at all where a pattern already says it); inline = one-line "why" (draft it first); runtime "what" → logs; local *why* vs. architectural *why* (design docs / decision log). |
+| `writing-rules.md` | `.claude/rules/**/*.md`, `CLAUDE.md` | How to write a rule: the staleness test, constraints not descriptions, no lists that must be complete, verify every claim (with a named enforcer for the structural ones), one exemplar never an inventory, `paths:` scoping and the per-load attention budget, what belongs in `CLAUDE.md` above the rules, plus an ordered procedure and a skeleton for writing one from cold. |
 
 Each rule is **independent and self-contained** — install only the ones a project
 needs.
@@ -50,7 +50,7 @@ project's `.claude/rules/`:
 ```
 /rules:install              # install all
 /rules:install makefile     # install just one
-/rules:install comments env-files
+/rules:install comments env-templates
 /rules:install writing-rules  # the meta-rule: how to write the others
 ```
 

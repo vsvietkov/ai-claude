@@ -66,12 +66,25 @@ One exception: a **closed set the rule itself instructs you to update in the sam
 an enum whose extension is a reviewed decision. The list is safe because the instruction to
 maintain it sits beside it.
 
-## 5. Verify every symbol you name
+## 5. Verify every claim you make
 
 **Confirm a package, type, function, field, file, script or build target exists before naming
 it.** A rule can describe a subsystem in full, authoritative detail while it exists nowhere in
 the repo, and the prose gives no sign — unverified reads exactly like verified. A named symbol
 is a claim; check it like one.
+
+**A constraint asserting where something happens gets a mechanism, named in the rule.** Prose
+saying a step lives in exactly one place, or never appears in a tree, is a claim the code can
+contradict silently — and a rule arrives on a `paths:` match, so a false one misinforms every
+edit it reaches rather than merely failing to inform. Pair it with a lint rule or a named test,
+and cite that enforcer here so the claim and its proof travel together. What decides whether
+one is owed: **could a reviewer disprove the sentence by pointing at a file?** Then something
+should fail when they can.
+
+**Where this does not apply:** a constraint about judgement — which layer a step belongs to,
+how to name a thing, what a comment may hold — has nothing to fail on, and inventing a check
+for it buys a false sense of coverage. The test above is the boundary: only a claim a reviewer
+could disprove from a file is one a mechanism can hold.
 
 ## 6. One exemplar, never an inventory
 
@@ -125,7 +138,8 @@ carry. An inventory of what those places currently contain is not.
 
 **What reaches a session is not this file — it is the sum of every rule whose `paths:` match
 the file being edited.** A rule that fires on a file it has nothing to say about spends another
-rule's attention budget, so the threshold in §10 is per *load*, not per file.
+rule's attention budget. Two numbers, at two scopes: §10's ~200 lines diagnoses a single
+rule; the ~600 below diagnoses what one file's edit loads in total.
 
 - **Give a rule the narrowest `paths:` that still catches every edit it constrains.** Reach for
   `**/*.<ext>` only when the rule genuinely governs every one of them.
@@ -207,8 +221,9 @@ input**: you cannot scope `paths:` before you know the audience, and you cannot 
 4. **Write each constraint as an imperative with its reason** — *"X, because Y"* (§2) —
    preferring the general shape to the instance you have in hand. Where a constraint has a real
    exception, write the question that decides it (§3); where it has none, say nothing.
-5. **Verify every symbol you named** (§5). Open or grep each one, and delete what you cannot
-   confirm — an unverified name reads exactly like a verified one, so nothing later catches it.
+5. **Verify every claim you made** (§5). Open or grep every symbol you named and delete what
+   you cannot confirm — an unverified name reads exactly like a verified one, so nothing later
+   catches it — then give every structural assertion an enforcer and cite it.
 6. **Cut what rots** — inventories and lists that must be complete to be correct (§4, §6), and
    every tense marker (§7).
 7. **Wire the cross-references** (§8) — number the `##` headings, point at sections rather than

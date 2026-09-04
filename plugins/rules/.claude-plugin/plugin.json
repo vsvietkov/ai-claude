@@ -1,7 +1,7 @@
 {
   "name": "rules",
-  "version": "0.2.1",
-  "description": "Reusable, language-neutral convention rules (Makefile, .env, comments, writing-rules) plus a /rules:install command to drop them into any project's .claude/rules/.",
+  "version": "0.3.0",
+  "description": "Reusable, language-neutral convention rules (Makefile, env templates, comments, writing-rules) plus a /rules:install command to drop them into any project's .claude/rules/.",
   "author": {
     "name": "Vitalii Svietkov",
     "email": "vsvietkov@gmail.com",
